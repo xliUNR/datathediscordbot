@@ -34,7 +34,7 @@ public class BotListener extends ListenerAdapter {
             Integer randomNumber = customTools.getRandomBoundedInt(numMembers);
 
             Member potientialVessel = members.get(randomNumber);
-            while( !potientialVessel.getOnlineStatus().equals(OnlineStatus.ONLINE) ) {
+            while( !potientialVessel.getOnlineStatus().equals(OnlineStatus.ONLINE) && !potientialVessel.getEffectiveName().equals("DataBot") ) {
                 randomNumber = customTools.getRandomBoundedInt(numMembers);
                 potientialVessel = members.get(randomNumber);
             }
