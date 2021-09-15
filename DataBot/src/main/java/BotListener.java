@@ -1,3 +1,4 @@
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -32,6 +33,11 @@ public class BotListener extends ListenerAdapter {
             Integer numMembers = message.getGuild().getMemberCount();
             Integer randomNumber = customTools.getRandomBoundedInt(numMembers);
 
+            Member potientialVessel = members.get(randomNumber);
+            while( !potientialVessel.getOnlineStatus().equals(OnlineStatus.ONLINE) ) {
+                randomNumber = customTools.getRandomBoundedInt(numMembers);
+                potientialVessel = members.get(randomNumber);
+            }
             MessageChannel channel = event.getChannel();
             String chosenWarriorName = members.get(randomNumber).getAsMention();
 
